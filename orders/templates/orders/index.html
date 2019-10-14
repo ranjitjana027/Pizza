@@ -24,7 +24,9 @@
 
       {% for regular in regulars %}
       <tr>
-      <td><strong>{{ regular.name }} </strong></td><td> {{ regular.small }} <input type="checkbox" name="regular-small" value="{{ regular.id }}" ></td><td>  {{ regular.large }}</td>
+      <td><strong>{{ regular.name }} </strong></td>
+      <td> {{ regular.small }} <input type="checkbox" name="regular-small" value="{{ regular.id }}" ></td>
+      <td>  {{ regular.large }}</td>
       <td><input type="checkbox" name="regular-large" value="{{ regular.id }}" ></td>
     </tr>
       {% endfor %}

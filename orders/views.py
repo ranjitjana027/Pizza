@@ -56,8 +56,8 @@ def register_view(request):
 
 def order_view(request):
     try:
+        # Regular Small
         regular_small=request.POST.getlist("regular-small")
-        cnt=0
         if regular_small is not None:
             for reg in regular_small:
                 r=Regular.objects.get(pk=reg)
@@ -66,11 +66,99 @@ def order_view(request):
                 od=Order_Details(username=request.user,order=order,payment='N')
                 od.save()
 
+        # Regular large
+        regular_large=request.POST.getlist("regular-large")
+        if regular_large is not None:
+            for reg in regular_large:
+                r=Regular.objects.get(pk=reg)
+                order=Order(dish=r.name, type="regular_large",quantity=1,price=r.large)
+                order.save()
+                od=Order_Details(username=request.user,order=order,payment='N')
+                od.save()
 
-                cnt+=1
+
+
+        #### Sicilian Small
+        sicilian_small=request.POST.getlist("sicilian-small")
+        if sicilian_small is not None:
+            for sic in sicilian_small:
+                s=Sicilian.objects.get(pk=sic)
+                order=Order(dish=s.name, type="sicilian_small",quantity=1,price=s.small)
+                order.save()
+                od=Order_Details(username=request.user,order=order,payment='N')
+                od.save()
+
+
+        #### Sicilian Large
+        sicilian_large=request.POST.getlist("sicilian-large")
+        if sicilian_large is not None:
+            for sic in sicilian_large:
+                s=Sicilian.objects.get(pk=sic)
+                order=Order(dish=s.name, type="sicilian_large",quantity=1,price=s.large)
+                order.save()
+                od=Order_Details(username=request.user,order=order,payment='N')
+                od.save()
+
+        #### Subs Small
+        subs_small=request.POST.getlist("sub-small")
+        if subs_small is not None:
+            for sub in subs_small:
+                s=Subs.objects.get(pk=sub)
+                order=Order(dish=s.name, type="subs_small",quantity=1,price=s.small)
+                order.save()
+                od=Order_Details(username=request.user,order=order,payment='N')
+                od.save()
+        #### Subs Large
+        subs_large=request.POST.getlist("sub-large")
+        if subs_large is not None:
+            for sub in subs_large:
+                s=Subs.objects.get(pk=sub)
+                order=Order(dish=s.name, type="subs_large",quantity=1,price=s.large)
+                order.save()
+                od=Order_Details(username=request.user,order=order,payment='N')
+                od.save()
+        #### Pasta
+        pastas=request.POST.getlist("pasta")
+        if pastas is not None:
+            for pas in pastas:
+                p=Pasta.objects.get(pk=pas)
+                order=Order(dish=p.name, type="Pasta",quantity=1,price=p.price)
+                order.save()
+                od=Order_Details(username=request.user,order=order,payment='N')
+                od.save()
+
+        #### Salad
+        salad=request.POST.getlist("salad")
+        if salad is not None:
+            for sal in salad:
+                s=Salad.objects.get(pk=sal)
+                order=Order(dish=s.name, type="Salad",quantity=1,price=s.price)
+                order.save()
+                od=Order_Details(username=request.user,order=order,payment='N')
+                od.save()
+        #### Dinner Small
+        dinner_small=request.POST.getlist("dinner-small")
+        if dinner_small is not None:
+            for din in dinner_small:
+                d=Dinner_Platters.objects.get(pk=din)
+                order=Order(dish=d.name, type="Dinner_Platters_small",quantity=1,price=d.small)
+                order.save()
+                od=Order_Details(username=request.user,order=order,payment='N')
+                od.save()
+        #### Dinner Large
+        dinner_large=request.POST.getlist("dinner-large")
+        if dinner_large is not None:
+            for din in dinner_large:
+                d=Dinner_Platters.objects.get(pk=din)
+                order=Order(dish=d.name, type="Dinner_Platters_Large",quantity=1,price=d.large)
+                order.save()
+                od=Order_Details(username=request.user,order=order,payment='N')
+                od.save()
+
         return HttpResponseRedirect(reverse('checkout'))
     except:
-        return HttpResponseRedirect(reverse('index'))
+        pass
+#        return HttpResponseRedirect(reverse('index'))
 
 def checkout_view(request):
     if not request.user.is_authenticated:
