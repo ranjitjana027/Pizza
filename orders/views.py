@@ -157,8 +157,7 @@ def order_view(request):
 
         return HttpResponseRedirect(reverse('checkout'))
     except:
-        pass
-#        return HttpResponseRedirect(reverse('index'))
+       return HttpResponseRedirect(reverse('index'))
 
 def checkout_view(request):
     if not request.user.is_authenticated:
