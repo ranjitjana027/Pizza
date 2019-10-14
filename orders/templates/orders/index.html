@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Home</title>
+
+  </head>
+
+  <body>
+    <div class="header">
+      Hi {{ user.first_name }}<br>
+      <a href="{% url 'logout' %}">logout</a>
+    </div>
+    <h1>Our Menu</h1>
+    <h2>Regular</h2>
+    <form action="{% url 'order' %}" method="post">
+      {% csrf_token %}
+      <table>
+        <tr>
+          <th>Name</th>
+          <th>Small</th>
+          <th>Large</th>
+        </tr>
+
+      {% for regular in regulars %}
+      <tr>
+      <td><strong>{{ regular.name }} </strong></td><td> {{ regular.small }} <input type="checkbox" name="regular-small" value="{{ regular.id }}" ></td><td>  {{ regular.large }}</td>
+      <td><input type="checkbox" name="regular-large" value="{{ regular.id }}" ></td>
+    </tr>
+      {% endfor %}
+    </table><hr>
+  <!--      <button type="submit">Add to cart</button>
+  </form>-->
+    <h2>Sicilian Pizza</h2>
+  <!--  <form action="#" method="post">
+      {% csrf_token %}-->
+      <table>
+        <tr>
+          <th>Name</th>
+          <th>Small</th>
+          <th>Large</th>
+        </tr>
+
+      {% for sicilian in sicilians %}
+      <tr>
+      <td><strong>{{ sicilian.name }} </strong></td><td> {{ sicilian.small }} <input type="checkbox" name="sicilian-small" value="{{ sicilian.id }}" ></td><td>  {{ sicilian.large }} <input type="checkbox" name="sicilian-large" value="{{ sicilian.id }}" ></td>
+    </tr>
+      {% endfor %}
+    </table><hr>
+<!--      <button type="submit">Add to cart</button>
+    </form>-->
+    <h2>Subs</h2>
+<!--    <form action="#" method="post">
+      {% csrf_token %}-->
+      <table>
+        <tr>
+          <th>Name</th>
+          <th>Small</th>
+          <th>Large</th>
+        </tr>
+
+      {% for sub in subs %}
+      <tr>
+      <td><strong>{{ sub.name }} </strong></td><td> {{ sub.small }} <input type="checkbox" name="sub-small" value="{{ sub.id }}" ></td><td>  {{ sub.large }}</td>
+      <td><input type="checkbox" name="sub-large" value="{{ sub.id }}" ></td>
+    </tr>
+      {% endfor %}
+    </table><hr>
+  <!--    <button type="submit">Add to cart</button>
+    </form> -->
+    <h2>Pasta</h2>
+<!--    <form action="#" method="post">
+      {% csrf_token %} -->
+      <table>
+        <tr>
+          <th>Name</th>
+          <th>Price</th>
+
+        </tr>
+
+      {% for pasta in pastas %}
+      <tr>
+      <td><strong>{{ pasta.name }} </strong></td><td> {{pasta.price }} </td>
+      <td><input type="checkbox" name="pasta" value="{{ pasta.id }}" ></td>
+    </tr>
+      {% endfor %}
+    </table><hr>
+<!--      <button type="submit">Add to cart</button>
+    </form>-->
+    <h2>Salads</h2>
+<!--    <form action="#" method="post">
+      {% csrf_token %}-->
+      <table>
+        <tr>
+          <th>Name</th>
+          <th>Price</th>
+        </tr>
+
+      {% for salad in salads %}
+      <tr>
+      <td><strong>{{ salad.name }} </strong></td><td> {{ salad.price }}</td>
+      <td><input type="checkbox" name="salad" value="{{ salad.id }}" ></td>
+    </tr>
+      {% endfor %}
+    </table><hr>
+<!--      <button type="submit">Add to cart</button>
+    </form>-->
+    <h2>Dinner Platters</h2>
+<!--    <form action="#" method="post">
+      {% csrf_token %}-->
+      <table>
+        <tr>
+          <th>Name</th>
+          <th>Small</th>
+          <th>Large</th>
+        </tr>
+
+      {% for dinner in dinners %}
+      <tr>
+      <td><strong>{{ dinner.name }} </strong></td><td> {{ dinner.small }} <input type="checkbox" name="dinner-small" value="{{ dinner.id }}" ></td><td>  {{ dinner.large }}</td>
+      <td><input type="checkbox" name="dinner-large" value="{{ dinner.id }}" ></td>
+    </tr>
+      {% endfor %}
+    </table><hr>
+      <button type="submit">Process to Buy</button>
+    </form>
+
+
+  </body>
+</html>
