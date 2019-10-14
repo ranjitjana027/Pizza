@@ -86,3 +86,7 @@ def checkout_view(request):
     return render(request,"orders/order.html",(context))
     #except:
     #        return HttpResponseRedirect(reverse('index'))
+
+def payment_view(request):
+    orders_list= Order_Details.objects.filter(username=request.user).exclude(payment='Y').update(payment='Y')
+    return HttpResponse("Payment Successfull")
